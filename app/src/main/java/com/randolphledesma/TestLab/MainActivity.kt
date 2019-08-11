@@ -9,6 +9,8 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         val myButton: Button = findViewById(R.id.button)
         myButton.setOnClickListener {
             queue.add(stringRequest)
-            Toast.makeText(this@MainActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
+            val current = SimpleDateFormat("MM dd, yyyy HH:mm:ss", Locale.getDefault()).format( Date() )
+            Toast.makeText(this, "Current Date and Time is: $current", Toast.LENGTH_SHORT).show()
         }
     }
 }
