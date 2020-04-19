@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestLab</string>
+    <string name="button1">Click Me</string>
 </resources>

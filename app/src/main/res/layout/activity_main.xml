@@ -19,6 +19,6 @@
     <Button android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test Button" />
+            android:text="@string/button1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
