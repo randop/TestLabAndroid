@@ -26,8 +26,7 @@ class MainActivity : AppCompatActivity() {
                 textView.text = response
             },
             Response.ErrorListener { error ->
-                println("Network error happened")
-                println(error)
+                println(error.message)
             })
 
         val myButton: Button = findViewById(R.id.button)
