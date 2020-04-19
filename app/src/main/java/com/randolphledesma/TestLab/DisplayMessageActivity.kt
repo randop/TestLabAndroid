@@ -10,6 +10,8 @@ class DisplayMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_message)
 
+        setTitle("${getString(R.string.app_name)} : Message")
+
         // Get the Intent that started this activity and extract the string
         val message = intent.getStringExtra(EXTRA_MESSAGE)
 
