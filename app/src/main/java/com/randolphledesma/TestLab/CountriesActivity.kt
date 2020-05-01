@@ -1,12 +1,14 @@
 package com.randolphledesma.TestLab
 
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,38 +21,32 @@ class CountriesActivity : AppCompatActivity(), ToolbarManager {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_countries)
-        val countries = Locale.getAvailableLocales().map { it.displayCountry }.filter { it.trim().length > 0 }.distinct().sorted()
+        var countries = Locale.getAvailableLocales().map { it.displayCountry }.filter { it.trim().length > 0 }.distinct().sorted()
         val countryList = country_list as RecyclerView
         countryList.layoutManager = LinearLayoutManager(this)
-        countryList.adapter = CountryListAdapter(countries) {
-            applicationContext.toast(it)
-        }
 
         initToolbar()
         enableHomeAsUp { onBackPressed() }
         attachToScroll(countryList)
-    }
 
-    fun enableHomeAsUp(up: () -> Unit) {
-        toolbar.navigationIcon = createUpDrawable()
-        toolbar.setNavigationOnClickListener { up() }
-    }
+        if (Intent.ACTION_SEARCH == intent.action) {
+            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+                countries = countries.filter { it.toLowerCase().contains(query.toLowerCase()) }
+            }
+        }
 
-    private fun createUpDrawable() = with(DrawerArrowDrawable(toolbar.context)) {
-        progress = 1f
-        this
+        countryList.adapter = CountryListAdapter(countries) {
+            applicationContext.toast(it)
+        }
     }
 
     fun initToolbar() {
+        toolbar.inflateMenu(R.menu.options_menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (toolbar.menu.findItem(R.id.search).actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        }
 
-    }
-
-    fun attachToScroll(recyclerView: RecyclerView) {
-        recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) toolbar.slideExit() else toolbar.slideEnter()
-            }
-        })
     }
 }
 

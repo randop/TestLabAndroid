@@ -6,7 +6,9 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.RecyclerView
 import java.text.DateFormat
 import java.util.*
 
@@ -47,6 +49,24 @@ fun Long.toDateString(dateFormat: Int = DateFormat.MEDIUM): String {
 
 interface ToolbarManager {
     val toolbar: Toolbar
+
+    fun enableHomeAsUp(up: () -> Unit) {
+        toolbar.navigationIcon = createUpDrawable()
+        toolbar.setNavigationOnClickListener { up() }
+    }
+
+    private fun createUpDrawable() = with(DrawerArrowDrawable(toolbar.context)) {
+        progress = 1f
+        this
+    }
+
+    fun attachToScroll(recyclerView: RecyclerView) {
+        recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) toolbar.slideExit() else toolbar.slideEnter()
+            }
+        })
+    }
 }
 
 fun View.slideExit() {
