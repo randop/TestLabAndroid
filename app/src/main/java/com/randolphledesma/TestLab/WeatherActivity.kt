@@ -1,6 +1,5 @@
 package com.randolphledesma.TestLab
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -45,7 +43,7 @@ class WeatherActivity : AppCompatActivity() {
     }
 }
 
-class ForecastListAdapter(val weekForecast: ForecastList, val itemListener: (ModelForecast) -> Unit) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(private val weekForecast: ForecastList, private val itemListener: (ModelForecast) -> Unit) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast, parent, false)
         view.layoutParams.height = parent.measuredHeight / 8
@@ -81,8 +79,8 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemListener: (Mod
 
 class ForecastRequest(val zipCode: String) {
     companion object {
-        private val APP_ID = "439d4b804bc8187953eb36d2a8c26a02"
-        private val URL = "https://samples.openweathermap.org/data/2.5/forecast/daily?APPID=$APP_ID&q="
+        private const val APP_ID = "439d4b804bc8187953eb36d2a8c26a02"
+        private const val URL = "https://samples.openweathermap.org/data/2.5/forecast/daily?APPID=$APP_ID&q="
     }
 
     fun execute(): ForecastResult {
@@ -121,62 +119,3 @@ class RequestForecastCommand(val zipCode: String): Command<ForecastList> {
         return ForecastDataMapper().convertFromDataModel(forecastRequest.execute())
     }
 }
-
-data class ModelForecast(val date: String, val description: String, val high: Int, val low: Int, val iconUrl: String)
-
-data class ForecastList(val city: String, val country: String, val dailyForecast:List<ModelForecast>) {
-    val size: Int
-        get() = dailyForecast.size
-
-    operator fun get(position: Int): ModelForecast = dailyForecast[position]
-}
-
-data class ForecastResult(
-    val city: City,
-    val cnt: Int,
-    val cod: String,
-    val list: List<Forecast>,
-    val message: Double
-)
-
-data class City(
-    val coord: Coord,
-    val country: String,
-    val id: Int,
-    val name: String,
-    val population: Int
-)
-
-data class Forecast(
-    val clouds: Int,
-    val deg: Int,
-    val dt: Long,
-    val humidity: Int,
-    val pressure: Double,
-    val rain: Double,
-    val snow: Double,
-    val speed: Double,
-    val temp: Temp,
-    val weather: List<Weather>
-)
-
-data class Coord(
-    val lat: Double,
-    val lon: Double
-)
-
-data class Temp(
-    val day: Double,
-    val eve: Double,
-    val max: Double,
-    val min: Double,
-    val morn: Double,
-    val night: Double
-)
-
-data class Weather(
-    val description: String,
-    val icon: String,
-    val id: Int,
-    val main: String
-)
