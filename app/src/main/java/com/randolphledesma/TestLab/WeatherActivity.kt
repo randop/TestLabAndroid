@@ -1,5 +1,6 @@
 package com.randolphledesma.TestLab
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,7 +24,7 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
-        setTitle("Weather Forecast")
+        title = "Weather Forecast"
 
         // Get the Intent that started this activity and extract the string
         //val message = intent.getStringExtra(EXTRA_MESSAGE)
@@ -37,7 +38,7 @@ class WeatherActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 val result = deferred.await()
                 forecastList.adapter = ForecastListAdapter(result) {
-                    Toast.makeText(this@WeatherActivity, "Weather on ${it.date} will be ${it.description}", Toast.LENGTH_SHORT).show()
+                    applicationContext.toast("Weather on ${it.date} will be ${it.description}")
                 }
             }
         }
@@ -88,10 +89,6 @@ class ForecastRequest(val zipCode: String) {
         val forecastJsonStr = java.net.URL(URL + zipCode).readText()
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
-}
-
-public interface Command<out T> {
-    fun execute(): T
 }
 
 class ForecastDataMapper {
