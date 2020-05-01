@@ -4,7 +4,11 @@ import android.app.Notification
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import java.text.DateFormat
+import java.util.*
 
 inline fun SharedPreferences.edit(func: SharedPreferences.Editor.() -> Unit) {
     val editor = edit()
@@ -30,6 +34,25 @@ inline fun supportsLollipop(code: () -> Unit) {
     }
 }
 
+inline fun Context.createToast(message: String, duration: Int = Toast.LENGTH_SHORT): Toast = Toast.makeText(this, message, duration)
+
 inline fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
+}
+
+fun Long.toDateString(dateFormat: Int = DateFormat.MEDIUM): String {
+    val df = DateFormat.getDateInstance(dateFormat, Locale.getDefault())
+    return df.format(this)
+}
+
+interface ToolbarManager {
+    val toolbar: Toolbar
+}
+
+fun View.slideExit() {
+    if (translationY == 0f) animate().translationY(-height.toFloat())
+}
+
+fun View.slideEnter() {
+    if (translationY < 0f) animate().translationY(0f)
 }

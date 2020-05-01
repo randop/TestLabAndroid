@@ -4,11 +4,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".WeatherActivity">
+        tools:context=".CountriesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/forecast_list"
+            android:id="@+id/country_list"
+            android:clipToPadding="false"
+            android:paddingTop="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_forecast" />
+            android:layout_height="match_parent" />
+
+    <include layout="@layout/toolbar" />
 </FrameLayout>

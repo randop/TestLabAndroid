@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -48,6 +47,11 @@ class MainActivity : AppCompatActivity() {
             sharedPref.edit {
                 set("foo" to current.toString())
             }
+        }
+
+        button3.setOnClickListener {
+            val intent = Intent(this, CountriesActivity::class.java)
+            startActivity(intent)
         }
     }
 
