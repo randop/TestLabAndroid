@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Request
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         assertNotNull(sharedPref, "SharedPreferences Context Failed")
 
         setContentView(R.layout.activity_main)
-        text1.text = getFilesDir().toString()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
 
         val queue = Volley.newRequestQueue(this)
         val stringRequest = StringRequest(Request.Method.GET, "http://httpbin.org/anything",
@@ -52,9 +53,8 @@ class MainActivity : AppCompatActivity() {
 
     /** Called when the user taps the Send button */
     fun sendMessage(view: View) {
-        val editText = findViewById<EditText>(R.id.editText)
         val message = editText.text.toString()
-        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
+        val intent = Intent(this, WeatherActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, message)
         }
         startActivity(intent)
