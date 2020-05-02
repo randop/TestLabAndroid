@@ -30,6 +30,7 @@ class CountriesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_countries)
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title = getString(R.string.countries_activity_title)
         handleIntent(intent)
     }
 
