@@ -31,13 +31,15 @@ class WeatherActivity : AppCompatActivity() {
         forecastList.layoutManager = LinearLayoutManager(this)
         //forecastList.adapter = ForecastListAdapter(items)
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val deferred = async(Dispatchers.IO) { RequestForecastCommand("94043").execute() }
-            withContext(Dispatchers.Main) {
+        GlobalScope.async(Dispatchers.Main) {
+            try {
+                val deferred = async(Dispatchers.IO) {RequestForecastCommand("94043").execute() }
                 val result = deferred.await()
                 forecastList.adapter = ForecastListAdapter(result) {
                     applicationContext.toast("Weather on ${it.date} will be ${it.description}")
                 }
+            } catch (error: Throwable) {
+                //void
             }
         }
     }
