@@ -6,47 +6,70 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_countries.*
 import java.util.*
 
-class CountriesActivity : AppCompatActivity(), ToolbarManager {
-    override val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
+class CountriesActivity : AppCompatActivity() {
+    private val allCountries = Locale.getAvailableLocales().map { it.displayCountry }.filter { it.trim().isNotBlank() }.distinct().sorted()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_countries)
-        var countries = Locale.getAvailableLocales().map { it.displayCountry }.filter { it.trim().length > 0 }.distinct().sorted()
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        handleIntent(intent)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+        val searchItem = menu?.findItem(R.id.search)
+        val searchView = searchItem?.actionView as SearchView
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+            setIconifiedByDefault(false)
+        }
+        val searchText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+
+        searchText.setOnEditorActionListener{ v, actionId, event ->
+            println("onSearch")
+            searchView.onq
+            true
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun handleIntent(intent: Intent) {
         val countryList = country_list as RecyclerView
         countryList.layoutManager = LinearLayoutManager(this)
-
-        initToolbar()
-        enableHomeAsUp { onBackPressed() }
-        attachToScroll(countryList)
-
+        var query = ""
         if (Intent.ACTION_SEARCH == intent.action) {
-            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
-                countries = countries.filter { it.toLowerCase().contains(query.toLowerCase()) }
+            query = intent.getStringExtra(SearchManager.QUERY)
+        }
+
+        val countries = allCountries.filter {
+            if (query.isNotBlank()) {
+                it.toLowerCase().contains(query.toLowerCase())
+            } else {
+                true
             }
         }
 
         countryList.adapter = CountryListAdapter(countries) {
             applicationContext.toast(it)
         }
-    }
-
-    fun initToolbar() {
-        toolbar.inflateMenu(R.menu.options_menu)
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        (toolbar.menu.findItem(R.id.search).actionView as SearchView).apply {
-            setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        }
-
     }
 }
 
