@@ -8,7 +8,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/country_list"
-            android:clipToPadding="false"
             android:paddingTop="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

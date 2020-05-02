@@ -14,12 +14,11 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".WeatherActivity"
-                android:parentActivityName=".MainActivity"
-                android:theme="@style/AppTheme.NoActionBar" />
+                android:parentActivityName=".MainActivity" />
         <activity
                 android:name=".CountriesActivity"
                 android:parentActivityName=".MainActivity"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+                android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                 android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
