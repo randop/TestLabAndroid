@@ -8,8 +8,11 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_countries.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class CountriesActivity : AppCompatActivity() {
@@ -38,6 +42,7 @@ class CountriesActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.options_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
@@ -46,6 +51,7 @@ class CountriesActivity : AppCompatActivity() {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             setIconifiedByDefault(false)
         }
+
         val searchText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
         searchText.setOnEditorActionListener{ view, actionId, event ->
             GlobalScope.launch(Dispatchers.Main) {
@@ -54,9 +60,10 @@ class CountriesActivity : AppCompatActivity() {
             /** hide keyboard **/
             val imm = applicationContext.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
+            searchText.clearFocus()
             true
         }
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     private fun handleIntent(intent: Intent) {
@@ -65,7 +72,7 @@ class CountriesActivity : AppCompatActivity() {
             query = intent.getStringExtra(SearchManager.QUERY)
         }
 
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch {
             doCountrySearch(query)
         }
     }
@@ -73,14 +80,15 @@ class CountriesActivity : AppCompatActivity() {
     private suspend fun doCountrySearch(query: String) {
         val countryList = country_list as RecyclerView
         countryList.layoutManager = LinearLayoutManager(this)
-        val countries = allCountries.filter {
-            if (query.isNotBlank()) {
-                it.toLowerCase().contains(query.toLowerCase())
-            } else {
-                true
+        val countries = withContext(Dispatchers.Main) {
+            allCountries.filter {
+                if (query.isNotBlank()) {
+                    it.toLowerCase().contains(query.toLowerCase())
+                } else {
+                    true
+                }
             }
         }
-
         countryList.adapter = CountryListAdapter(countries) {
             applicationContext.toast(it)
         }
