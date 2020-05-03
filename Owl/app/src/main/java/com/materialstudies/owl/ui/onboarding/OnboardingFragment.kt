@@ -29,6 +29,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
+import com.google.android.material.snackbar.Snackbar
 import com.materialstudies.owl.R
 import com.materialstudies.owl.databinding.FragmentOnboardingBinding
 import com.materialstudies.owl.model.topics
@@ -47,6 +48,9 @@ class OnboardingFragment : Fragment() {
         val binding = FragmentOnboardingBinding.inflate(inflater, container, false).apply {
             fab.setOnClickListener {
                 findNavController().navigate(R.id.action_onboarding_to_featured)
+            }
+            settings.setOnClickListener {
+                Snackbar.make(container!!.rootView, "Work In Progress: Settings", Snackbar.LENGTH_SHORT).show()
             }
             topicGrid.apply {
                 adapter = TopicsAdapter(context).apply {
