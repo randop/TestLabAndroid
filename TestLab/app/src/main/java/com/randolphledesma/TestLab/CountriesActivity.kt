@@ -72,7 +72,7 @@ class CountriesActivity : AppCompatActivity() {
             query = intent.getStringExtra(SearchManager.QUERY)
         }
 
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.Main) {
             doCountrySearch(query)
         }
     }
