@@ -7,9 +7,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.view.doOnNextLayout
+import com.google.android.material.snackbar.Snackbar
 import com.randolphledesma.TestLab.databinding.ActivityMainBinding
-import com.randolphledesma.TestLab.models.PromotionItemViewModel
-import com.randolphledesma.TestLab.ui.PromotionAdapter
+import com.randolphledesma.TestLab.model.MenuItem
+import com.randolphledesma.TestLab.ui.MenuAdapter
+import com.randolphledesma.TestLab.ui.MenuItemViewClick
 import com.randolphledesma.TestLab.util.contentView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
@@ -25,14 +28,25 @@ class MainActivity : AppCompatActivity() {
         assertNotNull(sharedPref, "SharedPreferences Context Failed")
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
 
-        val promotions = listOf(
-            PromotionItemViewModel("First","First Subtitle","Description",false),
-            PromotionItemViewModel("Second","Second Subtitle","Description",false)
+        val menus = listOf(
+            MenuItem(1,"First","First Subtitle","Description",false),
+            MenuItem(2,"Second","Second Subtitle","Description",false)
         )
+
+        val onMenuItemClick: MenuItemViewClick = object : MenuItemViewClick {
+            override fun onClick(view: View, id: Int, title: String) {
+                println("test")
+                Snackbar.make(view, title, Snackbar.LENGTH_SHORT).show()
+            }
+        }
 
         binding.apply {
             promotionGrid.apply {
-                adapter = PromotionAdapter(promotions)
+                adapter = MenuAdapter(onMenuItemClick).apply {
+                    doOnNextLayout {
+                        submitList(menus)
+                    }
+                }
             }
 
             button.setOnClickListener {

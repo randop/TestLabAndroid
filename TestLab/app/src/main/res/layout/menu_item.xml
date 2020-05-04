@@ -8,8 +8,11 @@
 
     <data>
         <variable
-                name="item"
-                type="com.randolphledesma.TestLab.models.PromotionItemViewModel" />
+            name="item"
+            type="com.randolphledesma.TestLab.model.MenuItem" />
+        <variable
+            name="clickHandler"
+            type="com.randolphledesma.TestLab.ui.MenuItemViewClick"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +23,8 @@
             android:clickable="true"
             android:focusable="true"
             app:elevationOverlay="@{@dimen/card_elevation}"
-            android:transitionName="@{item.title}">
+            android:transitionName="@{item.title}"
+            android:onClick="@{(v) -> clickHandler.onClick(v, item.id, item.title)}">
         <TextView
                 android:id="@+id/promotion_item_title"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
@@ -31,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:text="@{item.title}"
-                tools:text="30% on beer" />
+                tools:text="Example Title" />
 
         <TextView
                 android:id="@+id/promotion_item_special_label"
@@ -42,7 +46,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/promotion_item_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Promotion Special" />
+                android:text="Example Promotion" />
 
         <TextView
                 android:id="@+id/promotion_item_subtitle"
@@ -54,7 +58,7 @@
                 app:layout_constraintTop_toBottomOf="@id/promotion_item_special_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@{item.subtitle}"
-                tools:text="Piwnica Pod Baranami" />
+                tools:text="Example Subtitle" />
 
         <TextView
                 android:id="@+id/promotion_item_description"

@@ -29,7 +29,7 @@
                         app:hasFixedSize="@{true}"
                         android:scrollbarStyle="outsideOverlay"
                         android:scrollbars="vertical"
-                        tools:listitem="@layout/promotion_item"/>
+                        tools:listitem="@layout/menu_item"/>
 
                 <TableLayout
                         android:layout_width="match_parent"
