@@ -4,17 +4,16 @@ import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.randolphledesma.TestLab.ui.CountryAdapter
+import com.randolphledesma.TestLab.util.toast
 import kotlinx.android.synthetic.main.activity_countries.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -86,35 +85,8 @@ class CountriesActivity : AppCompatActivity() {
                 }
             }
         }
-        countryList.adapter = CountryListAdapter(countries) {
+        countryList.adapter = CountryAdapter(countries) {
             applicationContext.toast(it)
-        }
-    }
-}
-
-class CountryListAdapter(val items: List<String>, val itemClick: (String) -> Unit) : RecyclerView.Adapter<CountryListAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = TextView(parent.context)
-        if (Build.VERSION.SDK_INT < 23) {
-            view.setTextAppearance(parent.context, R.style.TextAppearance_AppCompat_Medium)
-        } else {
-            view.setTextAppearance(R.style.TextAppearance_AppCompat_Medium)
-        }
-        view.width = parent.measuredWidth
-        view.setPadding(8,12,8,12)
-        return ViewHolder(view, itemClick)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
-    override fun getItemCount(): Int = items.size
-
-    class ViewHolder(private val textView: TextView, val itemClick: (String) -> Unit): RecyclerView.ViewHolder(textView) {
-        fun bind(item: String) {
-            textView.text = item
-            itemView.setOnClickListener { itemClick(item) }
         }
     }
 }

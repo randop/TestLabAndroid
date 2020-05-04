@@ -4,7 +4,7 @@
     <string name="countries_activity_title">Countries</string>
     <string name="button1">Click Me</string>
     <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
+    <string name="button_weather">Weather</string>
     <string name="search_title">Search</string>
     <string name="search_hint">Search</string>
     <string name="button_countries">Countries</string>

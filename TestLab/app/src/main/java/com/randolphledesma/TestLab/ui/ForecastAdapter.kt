@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.randolphledesma.TestLab.util.Command
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
 import java.util.*
@@ -83,7 +84,8 @@ class ForecastDataMapper {
     private fun generateIconUrl(iconCode: String): String = "https://openweathermap.org/img/w/$iconCode.png"
 }
 
-class RequestForecastCommand(val zipCode: String): Command<ForecastList> {
+class RequestForecastCommand(val zipCode: String):
+    Command<ForecastList> {
     override fun execute(): ForecastList {
         val forecastRequest = ForecastRequest(zipCode)
         return ForecastDataMapper().convertFromDataModel(forecastRequest.execute())

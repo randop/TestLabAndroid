@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.randolphledesma.TestLab.util.toast
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.coroutines.*
 class WeatherActivity : AppCompatActivity() {

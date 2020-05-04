@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab
+package com.randolphledesma.TestLab.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,15 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.view.doOnNextLayout
 import com.google.android.material.snackbar.Snackbar
+import com.randolphledesma.TestLab.*
 import com.randolphledesma.TestLab.databinding.ActivityMainBinding
 import com.randolphledesma.TestLab.model.MenuItem
-import com.randolphledesma.TestLab.ui.MenuAdapter
-import com.randolphledesma.TestLab.ui.MenuItemViewClick
 import com.randolphledesma.TestLab.util.contentView
-import kotlinx.android.synthetic.main.activity_main.*
+import com.randolphledesma.TestLab.util.edit
+import com.randolphledesma.TestLab.util.set
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.test.assertNotNull
@@ -51,7 +50,8 @@ class MainActivity : AppCompatActivity() {
             button.setOnClickListener {
                 println(sharedPref.getString("foo", ""))
                 val current = SimpleDateFormat("MM dd, yyyy HH:mm:ss", Locale.getDefault()).format( Date() )
-                Toast.makeText(this@MainActivity, "Current Date and Time is: $current", Toast.LENGTH_SHORT).show()
+
+                Snackbar.make(it, "Current Date and Time is: $current", Snackbar.LENGTH_SHORT).show()
 
                 sharedPref.edit {
                     set("foo" to current.toString())
@@ -61,8 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /** Called when the user taps the Send button */
-    fun sendMessage(view: View) {
-        val message = editText.text.toString()
+    fun startWeatherActivity(view: View) {
         val intent = Intent(this, WeatherActivity::class.java)
         startActivity(intent)
     }
