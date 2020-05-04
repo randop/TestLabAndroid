@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:screenOrientation="fullSensor"
-        tools:replace="screenOrientation"
-        tools:context=".ui.ScanActivity">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="fullSensor"
+    tools:replace="screenOrientation"
+    tools:context=".ui.ScanActivity">
 
     <com.journeyapps.barcodescanner.BarcodeView
             android:id="@+id/barcode_view"
@@ -14,9 +15,10 @@
 
     <ImageView
             android:id="@+id/img_flash"
-            android:layout_margin="32dp"
+            android:layout_margin="24dp"
             android:layout_alignParentBottom="true"
             android:src="@drawable/ic_flash_off"
+            android:tint="@color/white_50"
             android:layout_width="48dp"
             android:layout_height="48dp" />
 

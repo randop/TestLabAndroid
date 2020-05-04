@@ -38,8 +38,6 @@ class ScanActivity : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
         }
 
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-
         setContentView(R.layout.activity_scan)
         barcode_view.decodeContinuous(callback)
 
@@ -72,6 +70,7 @@ class ScanActivity : AppCompatActivity() {
 
         override fun barcodeResult(result: BarcodeResult?) {
             if (result!!.text != null){
+                //println(result.resultMetadata)
                 println("Result: ${result.text.toString()}")
                 val vibrator = application.getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
                 vibrator.vibrate(100)
