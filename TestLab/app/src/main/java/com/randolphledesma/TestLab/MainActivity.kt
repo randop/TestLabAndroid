@@ -7,12 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.view.doOnNextLayout
-import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.randolphledesma.TestLab.databinding.ActivityMainBinding
 import com.randolphledesma.TestLab.models.PromotionItemViewModel
 import com.randolphledesma.TestLab.ui.PromotionAdapter
@@ -50,11 +44,6 @@ class MainActivity : AppCompatActivity() {
                     set("foo" to current.toString())
                 }
             }
-
-            button3.setOnClickListener {
-                val intent = Intent(this@MainActivity, CountriesActivity::class.java)
-                startActivity(intent)
-            }
         }
     }
 
@@ -62,6 +51,11 @@ class MainActivity : AppCompatActivity() {
     fun sendMessage(view: View) {
         val message = editText.text.toString()
         val intent = Intent(this, WeatherActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun startCountriesActivity(view: View) {
+        val intent = Intent(this@MainActivity, CountriesActivity::class.java)
         startActivity(intent)
     }
 }
