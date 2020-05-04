@@ -5,32 +5,43 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
+            android:name=".TestLabApplication"
             android:allowBackup="true"
-            android:name="TestLabApplication"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.MyApp"
-            tools:ignore="GoogleAppIndexingWarning">
+            tools:ignore="GoogleAppIndexingWarning"
+            android:hardwareAccelerated="true">
+        <activity android:name=".ui.ScanActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
         <activity
                 android:name=".WeatherActivity"
                 android:parentActivityName=".ui.MainActivity" />
         <activity
                 android:name=".CountriesActivity"
-                android:parentActivityName=".ui.MainActivity"
-                android:launchMode="singleTop">
+                android:launchMode="singleTop"
+                android:parentActivityName=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
+
+            <meta-data
+                    android:name="android.app.searchable"
                     android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

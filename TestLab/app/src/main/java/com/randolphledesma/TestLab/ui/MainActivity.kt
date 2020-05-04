@@ -67,7 +67,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startCountriesActivity(view: View) {
-        val intent = Intent(this@MainActivity, CountriesActivity::class.java)
+        val intent = Intent(this, CountriesActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun startScanActivity(view: View) {
+        val intent = Intent(this, ScanActivity::class.java)
         startActivity(intent)
     }
 }

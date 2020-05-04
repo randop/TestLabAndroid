@@ -54,6 +54,14 @@
                             android:text="@string/button_weather" />
 
                     <Button
+                            android:id="@+id/button_scan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/grid_1_5"
+                            android:onClick="startScanActivity"
+                            android:text="@string/button_scan" />
+
+                    <Button
                             android:id="@+id/button4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
