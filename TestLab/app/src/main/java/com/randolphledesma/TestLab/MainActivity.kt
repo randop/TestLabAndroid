@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         val onMenuItemClick: MenuItemViewClick = object : MenuItemViewClick {
             override fun onClick(view: View, id: Int, title: String) {
-                println("test")
                 Snackbar.make(view, title, Snackbar.LENGTH_SHORT).show()
             }
         }
