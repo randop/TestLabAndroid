@@ -1,49 +1,17 @@
 package com.randolphledesma.TestLab
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_weather.*
-import kotlinx.coroutines.*
 import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class WeatherActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather)
-        title = "Weather Forecast"
-
-        // Get the Intent that started this activity and extract the string
-        //val message = intent.getStringExtra(EXTRA_MESSAGE)
-
-        val forecastList = forecast_list as RecyclerView
-        forecastList.layoutManager = LinearLayoutManager(this)
-        //forecastList.adapter = ForecastListAdapter(items)
-
-        GlobalScope.async(Dispatchers.Main) {
-            try {
-                val deferred = async(Dispatchers.IO) {RequestForecastCommand("94043").execute() }
-                val result = deferred.await()
-                forecastList.adapter = ForecastListAdapter(result) {
-                    applicationContext.toast("Weather on ${it.date} will be ${it.description}")
-                }
-            } catch (error: Throwable) {
-                //void
-            }
-        }
-    }
-}
 
 class ForecastListAdapter(private val weekForecast: ForecastList, private val itemListener: (ModelForecast) -> Unit) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

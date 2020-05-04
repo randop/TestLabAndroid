@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">TestLab</string>
+    <string name="weather_activity_title">Weather Forecast</string>
     <string name="countries_activity_title">Countries</string>
     <string name="button1">Click Me</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="search_title">Search</string>
     <string name="search_hint">Search</string>
+    <string name="button_countries">Countries</string>
+    <string name="button_contacts">Contacts</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ipsum tellus, congue vitae mattis eget, tristique et turpis. Aliquam id tellus vel libero placerat venenatis. Integer vestibulum feugiat sapien eu lacinia. Curabitur nec libero lobortis ligula blandit consectetur. Nunc eu placerat urna. Morbi non luctus nisl. Donec pulvinar orci ut metus lobortis, quis congue mauris tristique. Suspendisse at viverra diam. Nullam in arcu ligula. Nulla enim urna, faucibus vitae nisi finibus, maximus facilisis lorem.
 
 Ut ipsum ligula, interdum ac turpis ac, dictum blandit augue. Duis faucibus arcu id nibh iaculis, eu venenatis neque tempor. Integer vitae mattis mi. Aliquam massa mauris, tristique ut nisi nec, convallis tincidunt urna. Curabitur molestie nisi mattis nisl iaculis, at consequat ligula lobortis. Nam nec facilisis dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque a libero augue. Aenean vitae commodo libero, at vestibulum erat.

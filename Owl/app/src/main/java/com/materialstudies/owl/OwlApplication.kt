@@ -20,7 +20,6 @@ import android.app.Application
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.Q
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.multidex.MultiDexApplication
 
 class OwlApplication : Application() {
 

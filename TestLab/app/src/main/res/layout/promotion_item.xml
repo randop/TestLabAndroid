@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:targetApi="o"
+        tools:ignore="RtlSymmetry">
+
+    <data>
+        <variable
+                name="item"
+                type="com.randolphledesma.TestLab.models.PromotionItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/featured_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/grid_0_5"
+            android:clickable="true"
+            android:focusable="true"
+            app:elevationOverlay="@{@dimen/card_elevation}"
+            android:transitionName="@{item.title}">
+        <TextView
+                android:id="@+id/promotion_item_title"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="@{item.title}"
+                tools:text="30% on beer" />
+
+        <TextView
+                android:id="@+id/promotion_item_special_label"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/promotion_item_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Promotion Special" />
+
+        <TextView
+                android:id="@+id/promotion_item_subtitle"
+                style="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/promotion_item_special_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{item.subtitle}"
+                tools:text="Piwnica Pod Baranami" />
+
+        <TextView
+                android:id="@+id/promotion_item_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="@{item.description}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/promotion_item_subtitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
