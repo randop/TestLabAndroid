@@ -8,9 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.view.doOnNextLayout
 import com.google.android.material.snackbar.Snackbar
-import com.randolphledesma.testlab.CountriesActivity
 import com.randolphledesma.testlab.R
-import com.randolphledesma.testlab.WeatherActivity
 import com.randolphledesma.testlab.databinding.ActivityMainBinding
 import com.randolphledesma.testlab.model.MenuItem
 import com.randolphledesma.testlab.util.contentView
@@ -58,6 +56,18 @@ class MainActivity : AppCompatActivity() {
                 sharedPref.edit {
                     set("foo" to current.toString())
                 }
+            }
+
+            buttonCountries.setOnClickListener {
+                startCountriesActivity(it)
+            }
+
+            buttonScan.setOnClickListener {
+                startScanActivity(it)
+            }
+
+            buttonWeather.setOnClickListener {
+                startWeatherActivity(it)
             }
         }
     }

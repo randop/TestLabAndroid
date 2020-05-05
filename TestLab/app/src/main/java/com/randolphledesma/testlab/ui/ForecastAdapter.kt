@@ -1,4 +1,4 @@
-package com.randolphledesma.testlab
+package com.randolphledesma.testlab.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.randolphledesma.testlab.*
 import com.randolphledesma.testlab.util.Command
 import com.squareup.picasso.Picasso
 import java.text.DateFormat

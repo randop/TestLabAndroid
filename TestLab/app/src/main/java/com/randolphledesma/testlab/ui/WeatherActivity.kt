@@ -1,9 +1,10 @@
-package com.randolphledesma.testlab
+package com.randolphledesma.testlab.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.randolphledesma.testlab.R
 import com.randolphledesma.testlab.util.toast
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.coroutines.*

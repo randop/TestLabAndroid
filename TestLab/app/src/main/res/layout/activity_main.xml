@@ -31,26 +31,23 @@
                         android:scrollbars="vertical"
                         tools:listitem="@layout/menu_item"/>
 
-                <LinearLayout
+                <com.google.android.flexbox.FlexboxLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:layout_margin="@dimen/grid_1_5"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
-
+                        app:flexWrap="wrap"
+                        app:alignItems="stretch"
+                        app:alignContent="stretch">
                     <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/button_countries"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/button_countries"
-                            android:onClick="startCountriesActivity" />
+                            android:text="@string/button_countries" />
                     <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/button_weather"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/grid_1_5"
-                            android:onClick="startWeatherActivity"
                             android:text="@string/button_weather" />
 
                     <Button
@@ -58,16 +55,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/grid_1_5"
-                            android:onClick="startScanActivity"
                             android:text="@string/button_scan" />
 
                     <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/button_contacts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/grid_1_5"
                             android:text="@string/button_contacts" />
-                </LinearLayout>
+                </com.google.android.flexbox.FlexboxLayout>
 
                 <TextView
                         android:id="@+id/text1"
