@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab.model
+package com.randolphledesma.testlab.model
 
 import androidx.recyclerview.widget.DiffUtil
 

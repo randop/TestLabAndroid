@@ -9,10 +9,10 @@
     <data>
         <variable
             name="item"
-            type="com.randolphledesma.TestLab.model.MenuItem" />
+            type="com.randolphledesma.testlab.model.MenuItem" />
         <variable
             name="clickHandler"
-            type="com.randolphledesma.TestLab.ui.MenuItemViewClick"/>
+            type="com.randolphledesma.testlab.ui.MenuItemViewClick"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

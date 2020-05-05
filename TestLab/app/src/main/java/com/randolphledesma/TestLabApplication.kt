@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab
+package com.randolphledesma.testlab
 
 import android.app.Application
 import android.os.Build.VERSION.SDK_INT

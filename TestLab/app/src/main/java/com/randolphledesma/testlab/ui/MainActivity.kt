@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab.ui
+package com.randolphledesma.testlab.ui
 
 import android.content.Context
 import android.content.Intent
@@ -8,12 +8,14 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.view.doOnNextLayout
 import com.google.android.material.snackbar.Snackbar
-import com.randolphledesma.TestLab.*
-import com.randolphledesma.TestLab.databinding.ActivityMainBinding
-import com.randolphledesma.TestLab.model.MenuItem
-import com.randolphledesma.TestLab.util.contentView
-import com.randolphledesma.TestLab.util.edit
-import com.randolphledesma.TestLab.util.set
+import com.randolphledesma.testlab.CountriesActivity
+import com.randolphledesma.testlab.R
+import com.randolphledesma.testlab.WeatherActivity
+import com.randolphledesma.testlab.databinding.ActivityMainBinding
+import com.randolphledesma.testlab.model.MenuItem
+import com.randolphledesma.testlab.util.contentView
+import com.randolphledesma.testlab.util.edit
+import com.randolphledesma.testlab.util.set
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.test.assertNotNull

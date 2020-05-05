@@ -1,13 +1,13 @@
-package com.randolphledesma.TestLab.ui
+package com.randolphledesma.testlab.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.randolphledesma.TestLab.databinding.MenuItemBinding
-import com.randolphledesma.TestLab.model.MenuItem
-import com.randolphledesma.TestLab.model.MenuItemDiff
+import com.randolphledesma.testlab.databinding.MenuItemBinding
+import com.randolphledesma.testlab.model.MenuItem
+import com.randolphledesma.testlab.model.MenuItemDiff
 
 
 class MenuAdapter(

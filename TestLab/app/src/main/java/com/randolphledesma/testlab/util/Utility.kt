@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab.util
+package com.randolphledesma.testlab.util
 
 import android.app.Activity
 import android.content.Intent
@@ -11,7 +11,7 @@ import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.common.CharacterSetECI
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
-import com.randolphledesma.TestLab.ui.ScanActivity
+import com.randolphledesma.testlab.ui.ScanActivity
 import java.util.*
 
 object Utility {

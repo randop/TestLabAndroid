@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab
+package com.randolphledesma.testlab
 
 import org.junit.Test
 

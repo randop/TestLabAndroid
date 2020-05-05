@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab
+package com.randolphledesma.testlab
 
 import android.app.Activity
 import android.app.SearchManager
@@ -12,8 +12,8 @@ import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.randolphledesma.TestLab.ui.CountryAdapter
-import com.randolphledesma.TestLab.util.toast
+import com.randolphledesma.testlab.ui.CountryAdapter
+import com.randolphledesma.testlab.util.toast
 import kotlinx.android.synthetic.main.activity_countries.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

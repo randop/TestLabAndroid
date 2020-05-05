@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab.util
+package com.randolphledesma.testlab.util
 
 import android.app.Notification
 import android.content.Context

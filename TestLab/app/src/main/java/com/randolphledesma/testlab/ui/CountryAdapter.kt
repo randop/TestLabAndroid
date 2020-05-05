@@ -1,10 +1,10 @@
-package com.randolphledesma.TestLab.ui
+package com.randolphledesma.testlab.ui
 
 import android.os.Build
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.randolphledesma.TestLab.R
+import com.randolphledesma.testlab.R
 
 class CountryAdapter(val items: List<String>, val itemClick: (String) -> Unit) : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

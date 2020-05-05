@@ -1,4 +1,4 @@
-package com.randolphledesma.TestLab.util
+package com.randolphledesma.testlab.util
 
 import android.view.View
 import androidx.databinding.BindingAdapter

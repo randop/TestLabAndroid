@@ -1,22 +1,18 @@
-package com.randolphledesma.TestLab.ui
+package com.randolphledesma.testlab.ui
 
 import android.Manifest
-import android.app.Activity
 import android.app.Service
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import com.google.zxing.ResultPoint
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
-import com.randolphledesma.TestLab.R
-import com.randolphledesma.TestLab.util.Utility.KEY_RESULT
+import com.randolphledesma.testlab.R
 import kotlinx.android.synthetic.main.activity_scan.*
 
 class ScanActivity : AppCompatActivity() {
