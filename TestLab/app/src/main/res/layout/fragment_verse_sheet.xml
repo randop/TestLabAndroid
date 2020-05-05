@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+        <LinearLayout
+                android:id="@+id/bottom_sheet_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:behavior_peekHeight="256dp"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+                tools:context=".ui.VerseSheetFragment"
+                tools:targetApi="o">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/grid_1_5"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Holy Bible"
+                        style="@style/TextAppearance.MaterialComponents.Headline4" />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Luke 4:4"
+                        android:textColor="@color/colorPrimaryVariant"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorSecondaryVariant"
+                        android:justificationMode="inter_word"
+                        android:text="And Jesus answered him, saying, It is written, That man shall not live by bread alone, but by every word of God."
+                        style="@style/TextAppearance.MaterialComponents.Body1" />
+                <Button
+                        android:id="@+id/button_github"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Github: @randop"
+                        android:textAllCaps="false"
+                        style="@style/Widget.MaterialComponents.Button.TextButton" />
+                <Button
+                        android:id="@+id/button_thanks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/grid_1_5"
+                        android:textAllCaps="false"
+                        android:text="Thank you LORD Jesus Christ"
+                        style="@style/Widget.MaterialComponents.Button" />
+            </LinearLayout>
+        </LinearLayout>
+</layout>

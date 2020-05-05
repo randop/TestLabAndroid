@@ -23,14 +23,16 @@
             tools:ignore="GoogleAppIndexingWarning"
             android:extractNativeLibs="true"
             android:hardwareAccelerated="true">
-        <activity android:name="com.randolphledesma.testlab.ui.ScanActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
         <activity
-                android:name="com.randolphledesma.testlab.ui.WeatherActivity"
-                android:parentActivityName="com.randolphledesma.testlab.ui.MainActivity" />
+                android:name=".ui.ScanActivity"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
-                android:name="com.randolphledesma.testlab.ui.CountriesActivity"
+                android:name=".ui.WeatherActivity"
+                android:parentActivityName=".ui.MainActivity" />
+        <activity
+                android:name=".ui.CountriesActivity"
                 android:launchMode="singleTop"
-                android:parentActivityName="com.randolphledesma.testlab.ui.MainActivity">
+                android:parentActivityName=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -39,7 +41,7 @@
                     android:name="android.app.searchable"
                     android:resource="@xml/searchable" />
         </activity>
-        <activity android:name="com.randolphledesma.testlab.ui.MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

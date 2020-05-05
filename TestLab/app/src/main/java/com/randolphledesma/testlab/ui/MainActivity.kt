@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.core.view.doOnNextLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.randolphledesma.testlab.R
 import com.randolphledesma.testlab.databinding.ActivityMainBinding
@@ -68,6 +69,11 @@ class MainActivity : AppCompatActivity() {
 
             buttonWeather.setOnClickListener {
                 startWeatherActivity(it)
+            }
+
+            buttonBottomSheet.setOnClickListener {
+                val verseSheet = VerseSheetFragment()
+                verseSheet.show(supportFragmentManager,  verseSheet.tag)
             }
         }
     }

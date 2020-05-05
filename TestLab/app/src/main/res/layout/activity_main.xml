@@ -2,10 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.MainActivity">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainActivity">
 
         <ScrollView
                 android:layout_width="match_parent"
@@ -63,6 +64,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/grid_1_5"
                             android:text="@string/button_contacts" />
+
+                    <Button
+                            android:id="@+id/button_bottom_sheet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/grid_1_5"
+                            android:text="@string/button_bottom_sheet" />
                 </com.google.android.flexbox.FlexboxLayout>
 
                 <TextView
@@ -99,6 +107,5 @@
 
             </LinearLayout>
         </ScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
