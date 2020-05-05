@@ -14,18 +14,16 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.randolphledesma.testlab.R
 import kotlinx.android.synthetic.main.activity_scan.*
+import java.security.Permission
 
 class ScanActivity : AppCompatActivity() {
     private var isTorch = false
+    private val REQUEST_IMAGE_CAPTURE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), 1)
-            }
-        }
+        checkCameraPermission()
 
         val window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -57,6 +55,36 @@ class ScanActivity : AppCompatActivity() {
     override fun onPause() {
         barcode_view.pause()
         super.onPause()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        var granted = false
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            for (i in permissions.indices ){
+                if (grantResults.get(i) ==  PackageManager.PERMISSION_GRANTED) {
+                    granted = true
+                    break
+                }
+            }
+        }
+        if (!granted) {
+            finish()
+        } else {
+            recreate()
+        }
+    }
+
+    private fun checkCameraPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_IMAGE_CAPTURE)
+            }
+        }
     }
 
     private val callback = object : BarcodeCallback {
