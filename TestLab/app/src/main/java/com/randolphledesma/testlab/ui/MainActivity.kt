@@ -1,5 +1,6 @@
 package com.randolphledesma.testlab.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.core.view.doOnNextLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.randolphledesma.testlab.R
 import com.randolphledesma.testlab.databinding.ActivityMainBinding
@@ -20,6 +20,10 @@ import java.util.*
 import kotlin.test.assertNotNull
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        private const val REQUEST_SCAN_RESULT = 1
+    }
+
     private val binding: ActivityMainBinding by contentView(R.layout.activity_main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,8 +81,21 @@ class MainActivity : AppCompatActivity() {
             }
 
             buttonQrcode.setOnClickListener {
-                val qrSheet = QrSheetFragment.newInstance("https://google.com/ncr")
+                val qrSheet = QrSheetFragment.newInstance("https://github.com/randop")
                 qrSheet.show(supportFragmentManager, QrSheetFragment.FRAGMENT_TAG)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_SCAN_RESULT) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                data.apply {
+                    val qrScanned = getStringExtra(ScanActivity.RESULT_KEY)
+                    val qrSheet = QrSheetFragment.newInstance(qrScanned)
+                    qrSheet.show(supportFragmentManager, QrSheetFragment.FRAGMENT_TAG)
+                }
             }
         }
     }
@@ -96,6 +113,6 @@ class MainActivity : AppCompatActivity() {
 
     fun startScanActivity(view: View) {
         val intent = Intent(this, ScanActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, REQUEST_SCAN_RESULT)
     }
 }

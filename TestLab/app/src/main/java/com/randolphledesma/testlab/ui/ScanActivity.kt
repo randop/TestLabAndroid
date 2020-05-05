@@ -2,6 +2,8 @@ package com.randolphledesma.testlab.ui
 
 import android.Manifest
 import android.app.Service
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +21,12 @@ import com.randolphledesma.testlab.R
 
 
 class ScanActivity : AppCompatActivity() {
+    companion object {
+        const val RESULT_KEY = "qr_scanned"
+
+        fun newInstance(context: Context) = Intent(context, ScanActivity::class.java)
+    }
+
     private var isTorch = false
     private val REQUEST_PERMISSION_CODE = 777
 
@@ -106,13 +114,20 @@ class ScanActivity : AppCompatActivity() {
                 val gson = GsonBuilder().setPrettyPrinting().create()
                 val json = gson.toJsonTree(result.result)
                 val jsonInString = gson.toJson(json)
-
                 //println(result.resultMetadata)
-                println("Result: ${result.text.toString()}")
+                //println("Result: ${result.text.toString()}")
                 val vibrator = application.getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
                 vibrator.vibrate(100)
-                finish()
+                returnResult(result.text.toString())
             }
         }
+    }
+
+    fun returnResult(value: String) {
+        val data = Intent().apply {
+            putExtra(RESULT_KEY, value)
+        }
+        setResult(RESULT_OK, data)
+        finish()
     }
 }

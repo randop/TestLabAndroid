@@ -1,5 +1,7 @@
 package com.randolphledesma.testlab.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +23,13 @@ class QrSheetFragment : BottomSheetDialogFragment() {
             if (qrValue!=null) {
                 val qrBitmap = Utility.generateQR(qrValue)
                 imageQr.setImageBitmap(qrBitmap)
+                textQr.text = qrValue
+                if (qrValue.indexOf("http") == 0) {
+                    textQr.setOnClickListener {
+                        val openURL = Intent(Intent.ACTION_VIEW, Uri.parse(qrValue))
+                        startActivity(openURL)
+                    }
+                }
             }
         }
         return binding.root
