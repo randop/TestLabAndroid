@@ -20,14 +20,12 @@ class VerseSheetFragment : BottomSheetDialogFragment() {
     ): View? {
         binding = FragmentVerseSheetBinding.inflate(inflater, container, false).apply {
             buttonGithub.setOnClickListener {
-                val openURL = Intent(Intent.ACTION_VIEW)
-                openURL.data = Uri.parse("https://github.com/randop")
+                val openURL = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/randop"))
                 startActivity(openURL)
             }
 
             buttonThanks.setOnClickListener {
-                val openURL = Intent(Intent.ACTION_VIEW)
-                openURL.data = Uri.parse("https://www.bible.com/bible/1/JHN.3.16.KJV")
+                val openURL = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.bible.com/bible/1/JHN.3.16.KJV"))
                 startActivity(openURL)
             }
         }
