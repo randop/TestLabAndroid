@@ -24,7 +24,7 @@ class QrSheetFragment : BottomSheetDialogFragment() {
                 val qrBitmap = Utility.generateQR(qrValue)
                 imageQr.setImageBitmap(qrBitmap)
                 textQr.text = qrValue
-                if (qrValue.indexOf("http") == 0) {
+                if (qrValue.indexOf("http") == 0 || qrValue.indexOf("smsto:") == 0 || qrValue.indexOf("tel:") == 0) {
                     textQr.setOnClickListener {
                         val openURL = Intent(Intent.ACTION_VIEW, Uri.parse(qrValue))
                         startActivity(openURL)
