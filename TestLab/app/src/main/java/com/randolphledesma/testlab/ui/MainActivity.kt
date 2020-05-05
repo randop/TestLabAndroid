@@ -73,7 +73,12 @@ class MainActivity : AppCompatActivity() {
 
             buttonBottomSheet.setOnClickListener {
                 val verseSheet = VerseSheetFragment()
-                verseSheet.show(supportFragmentManager,  verseSheet.tag)
+                verseSheet.show(supportFragmentManager, VerseSheetFragment.FRAGMENT_TAG)
+            }
+
+            buttonQrcode.setOnClickListener {
+                val qrSheet = QrSheetFragment.newInstance("https://google.com/ncr")
+                qrSheet.show(supportFragmentManager, QrSheetFragment.FRAGMENT_TAG)
             }
         }
     }

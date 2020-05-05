@@ -20,6 +20,7 @@ object Utility {
 
     const val REQUEST_CODE= 2304
     const val WRITE_PERMISSION = 2134
+    const val CAMERA_PERMISSION = 1
 
     fun scan(activity: Activity){
         val intent = Intent(activity, ScanActivity::class.java)

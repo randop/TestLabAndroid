@@ -12,18 +12,20 @@ import androidx.core.content.ContextCompat
 import com.google.zxing.ResultPoint
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
-import com.randolphledesma.testlab.R
 import kotlinx.android.synthetic.main.activity_scan.*
-import java.security.Permission
+import com.google.gson.JsonElement
+import com.google.gson.GsonBuilder
+import com.randolphledesma.testlab.R
+
 
 class ScanActivity : AppCompatActivity() {
     private var isTorch = false
-    private val REQUEST_IMAGE_CAPTURE = 1
+    private val REQUEST_PERMISSION_CODE = 777
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        checkCameraPermission()
+        checkPermissions()
 
         val window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -33,6 +35,7 @@ class ScanActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_scan)
+
         barcode_view.decodeContinuous(callback)
 
         img_flash.setOnClickListener {
@@ -63,26 +66,32 @@ class ScanActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        var granted = false
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            var granted = true
             for (i in permissions.indices ){
-                if (grantResults.get(i) ==  PackageManager.PERMISSION_GRANTED) {
-                    granted = true
-                    break
+                if (grantResults.get(i) ==  PackageManager.PERMISSION_DENIED) {
+                    granted = false
                 }
             }
-        }
-        if (!granted) {
-            finish()
-        } else {
-            recreate()
+            if (granted) {
+                recreate()
+            } else {
+                finish()
+            }
         }
     }
 
-    private fun checkCameraPermission() {
+    private fun checkPermissions() {
+        var permissions = arrayListOf<String>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_IMAGE_CAPTURE)
+                permissions.add(Manifest.permission.CAMERA)
+            }
+            if (permissions.isNotEmpty()) {
+                requestPermissions(permissions.toTypedArray(), REQUEST_PERMISSION_CODE)
             }
         }
     }
@@ -94,6 +103,10 @@ class ScanActivity : AppCompatActivity() {
 
         override fun barcodeResult(result: BarcodeResult?) {
             if (result!!.text != null){
+                val gson = GsonBuilder().setPrettyPrinting().create()
+                val json = gson.toJsonTree(result.result)
+                val jsonInString = gson.toJson(json)
+
                 //println(result.resultMetadata)
                 println("Result: ${result.text.toString()}")
                 val vibrator = application.getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
