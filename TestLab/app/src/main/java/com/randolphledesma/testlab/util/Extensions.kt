@@ -3,11 +3,14 @@ package com.randolphledesma.testlab.util
 import android.app.Notification
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
 import androidx.appcompat.widget.Toolbar
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import java.text.DateFormat
 import java.util.*
@@ -75,4 +78,9 @@ fun View.slideExit() {
 
 fun View.slideEnter() {
     if (translationY < 0f) animate().translationY(0f)
+}
+
+fun Fragment.launchUrl(url: String) {
+    val customTabs = CustomTabsIntent.Builder().build()
+    customTabs.launchUrl(this.context, Uri.parse(url))
 }

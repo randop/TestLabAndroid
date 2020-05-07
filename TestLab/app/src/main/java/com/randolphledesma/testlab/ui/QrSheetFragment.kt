@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.randolphledesma.testlab.databinding.FragmentQrSheetBinding
 import com.randolphledesma.testlab.util.Utility
+import com.randolphledesma.testlab.util.launchUrl
 
 class QrSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentQrSheetBinding
@@ -23,11 +24,15 @@ class QrSheetFragment : BottomSheetDialogFragment() {
             if (qrValue!=null) {
                 val qrBitmap = Utility.generateQR(qrValue)
                 imageQr.setImageBitmap(qrBitmap)
-                textQr.text = qrValue
+                buttonQr.text = qrValue
                 if (qrValue.indexOf("http") == 0 || qrValue.indexOf("smsto:") == 0 || qrValue.indexOf("tel:") == 0) {
-                    textQr.setOnClickListener {
-                        val openURL = Intent(Intent.ACTION_VIEW, Uri.parse(qrValue))
-                        startActivity(openURL)
+                    buttonQr.setOnClickListener {
+                        if (qrValue.indexOf("http")==0) {
+                            this@QrSheetFragment.launchUrl(qrValue)
+                        } else {
+                            val openURL = Intent(Intent.ACTION_VIEW, Uri.parse(qrValue))
+                            startActivity(openURL)
+                        }
                     }
                 }
             }

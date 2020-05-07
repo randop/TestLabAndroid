@@ -1,13 +1,12 @@
 package com.randolphledesma.testlab.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.randolphledesma.testlab.databinding.FragmentVerseSheetBinding
+import com.randolphledesma.testlab.util.launchUrl
 
 class VerseSheetFragment : BottomSheetDialogFragment() {
 
@@ -20,13 +19,11 @@ class VerseSheetFragment : BottomSheetDialogFragment() {
     ): View? {
         binding = FragmentVerseSheetBinding.inflate(inflater, container, false).apply {
             buttonGithub.setOnClickListener {
-                val openURL = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/randop"))
-                startActivity(openURL)
+                this@VerseSheetFragment.launchUrl("https://github.com/randop")
             }
 
             buttonThanks.setOnClickListener {
-                val openURL = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.bible.com/bible/1/JHN.3.16.KJV"))
-                startActivity(openURL)
+                this@VerseSheetFragment.launchUrl("https://www.bible.com/bible/1/JHN.3.16.KJV")
             }
         }
         return binding.root
