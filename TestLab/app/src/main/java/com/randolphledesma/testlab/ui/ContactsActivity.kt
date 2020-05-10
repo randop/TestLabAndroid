@@ -10,6 +10,8 @@ class ContactsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = getString(R.string.contacts_activity_title)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView<ActivityContactsBinding>(this, R.layout.activity_contacts)
     }
 }
