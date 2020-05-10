@@ -12,7 +12,7 @@
             type="com.randolphledesma.testlab.model.MenuItem" />
         <variable
             name="clickHandler"
-            type="com.randolphledesma.testlab.ui.MenuItemViewClick"/>
+            type="com.randolphledesma.testlab.adapters.MenuItemViewClick"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,10 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.randolphledesma.testlab.model.Contact
 import com.randolphledesma.testlab.util.DATABASE_NAME
+import com.randolphledesma.testlab.workers.SeedDatabaseWorker
 
-@Database(entities = arrayOf(Contact::class), version = 1)
+@Database(entities = [Contact::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun contactDao(): ContactDao
 
@@ -30,8 +33,8 @@ abstract class AppDatabase : RoomDatabase() {
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        //val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
-                        //WorkManager.getInstance(context).enqueue(request)
+                        val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
+                        WorkManager.getInstance(context).enqueue(request)
                     }
                 })
                 .build()

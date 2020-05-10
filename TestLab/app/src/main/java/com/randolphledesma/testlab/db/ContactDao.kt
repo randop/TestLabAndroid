@@ -16,7 +16,7 @@ interface ContactDao {
     fun loadAllByIds(contactIds: IntArray): List<Contact>
 
     @Query("SELECT * FROM contacts WHERE name LIKE :name LIMIT 1")
-    fun findByName(first: String, last: String): Contact
+    fun findByName(name: String): Contact
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(contacts: List<Contact>)

@@ -10,6 +10,8 @@ import android.view.WindowManager
 import androidx.core.view.doOnNextLayout
 import com.google.android.material.snackbar.Snackbar
 import com.randolphledesma.testlab.R
+import com.randolphledesma.testlab.adapters.MenuAdapter
+import com.randolphledesma.testlab.adapters.MenuItemViewClick
 import com.randolphledesma.testlab.databinding.ActivityMainBinding
 import com.randolphledesma.testlab.model.MenuItem
 import com.randolphledesma.testlab.util.contentView
@@ -37,7 +39,8 @@ class MainActivity : AppCompatActivity() {
             MenuItem(2,"Second","Second Subtitle","Description",false)
         )
 
-        val onMenuItemClick: MenuItemViewClick = object : MenuItemViewClick {
+        val onMenuItemClick: MenuItemViewClick = object :
+            MenuItemViewClick {
             override fun onClick(view: View, id: Int, title: String) {
                 Snackbar.make(view, title, Snackbar.LENGTH_SHORT).show()
             }
@@ -84,6 +87,10 @@ class MainActivity : AppCompatActivity() {
                 val qrSheet = QrSheetFragment.newInstance("https://github.com/randop")
                 qrSheet.show(supportFragmentManager, QrSheetFragment.FRAGMENT_TAG)
             }
+
+            buttonContacts.setOnClickListener {
+                startContactsActivity(it)
+            }
         }
     }
 
@@ -114,5 +121,10 @@ class MainActivity : AppCompatActivity() {
     fun startScanActivity(view: View) {
         val intent = Intent(this, ScanActivity::class.java)
         startActivityForResult(intent, REQUEST_SCAN_RESULT)
+    }
+
+    fun startContactsActivity(view: View) {
+        val intent = Intent(this, ContactsActivity::class.java)
+        startActivity(intent)
     }
 }

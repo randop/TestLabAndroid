@@ -2,6 +2,7 @@
     <string name="app_name">TestLab</string>
     <string name="weather_activity_title">Weather Forecast</string>
     <string name="countries_activity_title">Countries</string>
+    <string name="contacts_activity_title">Contacts</string>
     <string name="button1">Click Me</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_weather">Weather</string>

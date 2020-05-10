@@ -1,4 +1,4 @@
-package com.randolphledesma.testlab.ui
+package com.randolphledesma.testlab.adapters
 
 import android.os.Build
 import android.view.ViewGroup

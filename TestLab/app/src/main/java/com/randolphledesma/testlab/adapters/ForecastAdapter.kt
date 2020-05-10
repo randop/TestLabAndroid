@@ -1,4 +1,4 @@
-package com.randolphledesma.testlab.ui
+package com.randolphledesma.testlab.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +19,10 @@ class ForecastListAdapter(private val weekForecast: ForecastList, private val it
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast, parent, false)
         view.layoutParams.height = parent.measuredHeight / 8
-        return ViewHolder(view, itemListener)
+        return ViewHolder(
+            view,
+            itemListener
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

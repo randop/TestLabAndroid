@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.randolphledesma.testlab.R
+import com.randolphledesma.testlab.adapters.ForecastListAdapter
+import com.randolphledesma.testlab.adapters.RequestForecastCommand
 import com.randolphledesma.testlab.util.toast
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.coroutines.*
@@ -20,11 +22,15 @@ class WeatherActivity : AppCompatActivity() {
 
         GlobalScope.async(Dispatchers.Main) {
             try {
-                val deferred = async(Dispatchers.IO) {RequestForecastCommand("94043").execute() }
+                val deferred = async(Dispatchers.IO) {
+                    RequestForecastCommand(
+                        "94043"
+                    ).execute() }
                 val result = deferred.await()
-                forecastList.adapter = ForecastListAdapter(result) {
-                    applicationContext.toast("Weather on ${it.date} will be ${it.description}")
-                }
+                forecastList.adapter =
+                    ForecastListAdapter(result) {
+                        applicationContext.toast("Weather on ${it.date} will be ${it.description}")
+                    }
             } catch (error: Throwable) {
                 //void
             }

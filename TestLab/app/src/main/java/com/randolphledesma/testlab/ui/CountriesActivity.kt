@@ -13,6 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.randolphledesma.testlab.R
+import com.randolphledesma.testlab.adapters.CountryAdapter
 import com.randolphledesma.testlab.util.toast
 import kotlinx.android.synthetic.main.activity_countries.*
 import kotlinx.coroutines.Dispatchers

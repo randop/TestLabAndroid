@@ -4,7 +4,7 @@ class ContactRepository private constructor(private val contactDao: ContactDao) 
 
     fun getContacts() = contactDao.getAll()
 
-    fun getPlant(contactId: String) = contactDao.getContact(contactId)
+    fun getContact(contactId: String) = contactDao.getContact(contactId)
 
     companion object {
 
